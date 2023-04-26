@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GALLERY</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .collage-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 50px;
+        }
+
+        .art-piece {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bg-repeat {
+            background-image: url('../background.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Additional CSS for modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+    </style>
+
+</head>
+
+<body class="bg-repeat">
+
+    <div class="container">
+        <div class="collage-container">
+            <img src="../art/art1.png" alt="Art 1" class="art-piece art-piece1">
+            <img src="../art/art2.png" alt="Art 2" class="art-piece art-piece2">
+            <img src="../art/art3.png" alt="Art 3" class="art-piece art-piece3">
+            <img src="../art/art4.png" alt="Art 4" class="art-piece art-piece4">
+            <img src="../art/art5.png" alt="Art 5" class="art-piece art-piece5">
+            <img src="../art/art6.png" alt="Art 6" class="art-piece art-piece6">
+        </div>
+    </div>
+
+    <!-- Modal for displaying full-screen image -->
+    <div id="modal" class="modal">
+        <img id="modal-image" src="" alt="Full-screen Art Piece">
+    </div>
+
+    <script>
+        const artPieces = document.querySelectorAll('.art-piece');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+
+        // ART 1
+        artPieces.forEach(artPiece => {
+            artPiece.addEventListener('click', (e) => {
+
+                if (e.target.src.includes('art1.png')) {
+                    // Update modal image source to large2.jpg
+                    modalImage.src = '../art/large2.jpg';
+                } else if (e.target.src.includes('art2.png')) {
+                    modalImage.src = '../art/large2.jpg';
+                } else if (e.target.src.includes('art3.png')) {
+                    modalImage.src = '../art/large3.jpg';
+                } else if (e.target.src.includes('art4.png')) {
+                    modalImage.src = '../art/large4.jpg';
+                } else if (e.target.src.includes('art5.png')) {
+                    modalImage.src = '../art/large5.jpg';
+                } else if (e.target.src.includes('art6.png')) {
+                    modalImage.src = '../art/large6.jpg';
+                }
+                modal.style.display = 'flex';
+
+            });
+
+        });
+
+        modal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    </script>
+
+</body>
+
+</html>
